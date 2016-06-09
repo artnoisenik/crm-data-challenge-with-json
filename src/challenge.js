@@ -1,17 +1,35 @@
-exports.companies = function (rawData) {
-    var people = rawData.people
-    var companies = rawData.companies;
+module.exports.companies = function (rawData) {
+    // let result = [];
+    // let goodStuff = {
+    //   'name': companyName,
+    //   'employees': employeeArray
+    // };
 
-    for (var i = 0; i < people.length; i++) {
+    let people = rawData.people;
+    let companies = rawData.companies;
+    let employments = people.map(function(num,index){
+      return people[index];
+    })
 
-      var employments = people[i].employments
+    let emplotmentInfo = employments.map(function(num, index) {
+      return employments[index].employments;
+    })
 
-      employments.map(function (num, index) {
-        if (employments[index].company_id === companies[index].id) {
-          console.log('NUM');
+
+    for (let i = 0; i < companies.length; i++) {
+      for (var j = 0; j < employments.length; j++) {
+        let employeeInfo = employments[j].employments
+        for (var z = 0; z < employeeInfo.length; z++) {
+          if (employeeInfo[z].company_id === companies[i].id) {
+            console.log('NAME!!!!!',companies[i].name);
+          }
         }
-      })
-
+      }
     }
 
-  }
+    // var employmentId = employments.map(function (num,index) {
+    //   return employments[index];
+    // })
+    //
+    // console.log(employments);
+  };
