@@ -71,3 +71,20 @@ module.exports.companies = function (rawData) {
     }
     return result;
   }
+
+  module.exports.peopleWithoutEmployments = function (rawData) {
+    let result = [];
+
+    let people = rawData.people;
+
+    for (var i = 0; i < people.length; i++) {
+      let goodStuff = new Object();
+      if (!people[i].employments.length) {
+        goodStuff.id = people[i].id;
+        goodStuff.first_name = people[i].first_name;
+        goodStuff.last_name = people[i].last_name;
+        result.push(goodStuff);
+      }
+    }
+    return result;
+  }
